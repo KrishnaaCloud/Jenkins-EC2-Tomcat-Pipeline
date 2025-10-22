@@ -3,8 +3,8 @@ pipeline {
 
     environment {
         TOMCAT_URL = 'http://ec2-13-232-207-52.ap-south-1.compute.amazonaws.com:8082/manager/text'
-        TOMCAT_USER = 'Krishnacloud'
-        TOMCAT_PASSWORD = 'Temp@#12312'
+        TOMCAT_USER = 'jenkins'
+        TOMCAT_PASSWORD = 'Jenkins123!'
     }
 
     stages {
