@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     environment {
+        // Tomcat server info
         TOMCAT_URL = 'http://ec2-13-232-207-52.ap-south-1.compute.amazonaws.com:8082/manager/text'
         TOMCAT_USER = 'jenkins'
         TOMCAT_PASSWORD = 'Jenkins123!'
@@ -19,9 +20,9 @@ pipeline {
             steps {
                 echo 'Deploying WAR to Tomcat...'
                 sh """
-                curl --fail --upload-file target/my-web-app-1.0-SNAPSHOT.war \
+                curl --fail --upload-file target/*.war \
                 --user $TOMCAT_USER:$TOMCAT_PASSWORD \
-                $TOMCAT_URL/my-web-app.war
+                "$TOMCAT_URL/deploy?path=/my-web-app&update=true"
                 """
             }
         }
@@ -33,6 +34,6 @@ pipeline {
         }
         failure {
             echo 'Deployment failed. Check logs for errors.'
-             }
+        }
     }
 }
